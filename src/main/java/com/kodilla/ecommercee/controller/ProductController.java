@@ -10,8 +10,8 @@ import java.util.List;
 @RequestMapping("/v1/product")
 public class ProductController {
 
-    @GetMapping(value = "getProducts")
-    public List<ProductDto> getProducts() {
+    @GetMapping(value = "getAll")
+    public List<ProductDto> getAll() {
         return new ArrayList<>();
     }
 
