@@ -1,6 +1,5 @@
-package com.kodilla.ecommercee.controller;
+package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.model.OrderDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,14 +9,14 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
 
-    @GetMapping()
-    public List<OrderDto> get() {
+    @GetMapping
+    public List<OrderDto> getAll() {
         return new ArrayList<>();
     }
 
     @GetMapping("/{orderId}")
     public OrderDto get(@PathVariable Long orderId) {
-        return new OrderDto(1L,"Get order");
+        return new OrderDto();
     }
 
     @DeleteMapping("/{orderId}")
@@ -27,7 +26,7 @@ public class OrderController {
 
     @PostMapping()
     public OrderDto update(@RequestBody OrderDto orderDto) {
-        return new OrderDto(1L, "Updated order");
+        return new OrderDto();
     }
 
     @PutMapping()

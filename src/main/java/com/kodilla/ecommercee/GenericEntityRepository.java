@@ -1,6 +1,5 @@
-package com.kodilla.ecommercee.model;
+package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.model.GenericEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
