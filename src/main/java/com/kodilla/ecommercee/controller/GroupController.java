@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.dto.GroupDto;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +12,12 @@ public class GroupController {
 
     @GetMapping
     public List<GroupDto> getAll() {
-        List<GroupDto> groupDtos = new ArrayList<>();
-        groupDtos.add(new GroupDto("Test name"));
-        return groupDtos;
+        return new ArrayList<>();
     }
 
     @GetMapping("/{groupId}")
     public GroupDto get(@PathVariable Long groupId) {
-        return new GroupDto("test name");
+        return new GroupDto();
     }
 
     @PostMapping
@@ -28,7 +26,7 @@ public class GroupController {
 
     @PutMapping
     public GroupDto update(GroupDto groupDto) {
-        return new GroupDto("edited test title");
+        return new GroupDto();
     }
 
 
