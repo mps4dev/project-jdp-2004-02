@@ -5,25 +5,17 @@ import jdk.nashorn.internal.objects.annotations.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "CARTS")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long cartId;
-
-    @Column(name = "PRODUCT")
     private Product product;
-
-    @Column(name = "QUANTITY")
     private double productQuantity;
-
-    @Column(name = "SUM")
     private double sum;
 
     @OneToMany(targetEntity = Product.class,
