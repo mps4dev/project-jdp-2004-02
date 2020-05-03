@@ -10,21 +10,16 @@ import java.util.ArrayList;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
+@Entity(name="CARTS")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long cartId;
-    private double productQuantity;
-    private BigDecimal sum;
 
-    @OneToMany(targetEntity = Product.class,
-               mappedBy = "cart",
-               fetch = FetchType.LAZY)
-    private List<Product> cartContent = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Order order;
 
-    public Cart(double productQuantity) {
-        this.productQuantity = productQuantity;
-        this.sum = (BigDecimal)getProductId().getProductPrice()*productQuantity;
-    }
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products = new ArrayList<>();
 }
