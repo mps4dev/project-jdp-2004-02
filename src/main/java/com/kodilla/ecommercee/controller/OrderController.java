@@ -1,5 +1,6 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.OrderDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,12 +25,12 @@ public class OrderController {
 
     }
 
-    @PostMapping()
+    @PostMapping
     public OrderDto update(@RequestBody OrderDto orderDto) {
         return new OrderDto();
     }
 
-    @PutMapping()
+    @PutMapping
     public void create(@RequestBody OrderDto orderDto) {
 
     }
