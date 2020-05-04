@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/v1/product")
 public class ProductController {
 
-    @GetMapping(value = "getAll")
+    @GetMapping
     public List<ProductDto> getAll() {
         return new ArrayList<>();
     }
@@ -20,12 +20,12 @@ public class ProductController {
         return new ProductDto ();
     }
 
-    @PutMapping()
+    @PutMapping
     public void create(@RequestBody ProductDto productDto) {
 
     }
 
-    @PostMapping()
+    @PostMapping
     public ProductDto update(@RequestBody ProductDto product) {
         return new ProductDto();
     }
