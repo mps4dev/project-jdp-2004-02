@@ -5,11 +5,14 @@ import com.kodilla.ecommercee.dto.OrderDto;
 import com.kodilla.ecommercee.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/cart")
 public class CartController {
 
-    @PostMapping
+    @PutMapping
     public void create(@RequestBody CartDto cartDto) {
 
     }
@@ -17,6 +20,11 @@ public class CartController {
     @GetMapping("/{cartId}")
     public ProductDto getProduct(@RequestParam long productId, @PathVariable long cartId) {
         return new ProductDto();
+    }
+
+    @GetMapping
+    public List<ProductDto> getAllProducts() {
+    return new ArrayList<>();
     }
 
     @PostMapping("/{cartId}")
@@ -29,7 +37,7 @@ public class CartController {
 
     }
 
-    @PutMapping
+    @PutMapping("makeOrder")
     public OrderDto makeOrder(@RequestBody CartDto cartDto) {
         return new OrderDto();
     }
