@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("v1/user")
 public class UserController {
 
-    @GetMapping
+    @GetMapping(value = "get")
     public UserDto getUser(@RequestParam(value = "id") long id){
         return new UserDto();
     }
