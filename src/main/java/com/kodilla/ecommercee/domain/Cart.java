@@ -1,25 +1,26 @@
 package com.kodilla.ecommercee.domain;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
+import com.kodilla.ecommercee.GenericEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="CARTS")
-public class Cart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long cartId;
-
+@Entity(name = "CARTS")
+public class Cart extends GenericEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Product> products = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "JOIN_PRODUCTS_CARTS",
+            joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")}
+    )
+    private List<Product> products;
 }
