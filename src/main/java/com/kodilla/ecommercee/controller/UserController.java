@@ -7,31 +7,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/user")
+@RequestMapping("/user")
 public class UserController {
 
-    @GetMapping(value = "get")
-    public UserDto getUser(@RequestParam(value = "id") long id){
+    @GetMapping("/{userId}")
+    public UserDto get(@PathVariable long userId){
         return new UserDto();
     }
 
     @GetMapping
-    public List<UserDto> getAllUsers(){
+    public List<UserDto> getAll(){
         return new ArrayList<>();
     }
 
-    @DeleteMapping
-    public void deleteUser(@RequestParam(value = "id")long id){
+    @DeleteMapping("/{userId}")
+    public void delete(@PathVariable long userId){
     }
 
     @PostMapping
     public void create(@RequestBody UserDto userDto){
-        userDto.getToken().generateToken();
     }
 
-    @PutMapping
-    public void block(@RequestParam(value = "param") long param){
+    @PutMapping("/{userId}")
+    public void block(@PathVariable long userId){
 
+    }
+
+    @GetMapping("/{userId}")
+    public String token(@PathVariable long userId){
+        return "";
     }
 
 }
