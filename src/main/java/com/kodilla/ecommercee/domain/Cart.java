@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -19,7 +17,6 @@ public class Cart extends GenericEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
-
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
