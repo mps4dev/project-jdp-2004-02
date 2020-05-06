@@ -26,16 +26,14 @@ public class UserController {
 
     @PostMapping
     public void create(@RequestBody UserDto userDto){
-    }
-
-    @PutMapping("/{userId}")
-    public void block(@PathVariable long userId){
 
     }
 
-    @GetMapping("/{userId}")
-    public String token(@PathVariable long userId){
-        return "";
+    @PutMapping
+    public UserDto update(@RequestBody UserDto userDto){
+        return new UserDto();
+
     }
+
 
 }
