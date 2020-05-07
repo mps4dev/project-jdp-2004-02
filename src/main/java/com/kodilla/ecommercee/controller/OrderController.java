@@ -25,12 +25,12 @@ public class OrderController {
 
     }
 
-    @PostMapping
+    @PutMapping
     public OrderDto update(@RequestBody OrderDto orderDto) {
         return new OrderDto();
     }
 
-    @PutMapping
+    @PostMapping
     public void create(@RequestBody OrderDto orderDto) {
 
     }
