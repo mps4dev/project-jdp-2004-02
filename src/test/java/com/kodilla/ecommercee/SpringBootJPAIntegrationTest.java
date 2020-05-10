@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 public class SpringBootJPAIntegrationTest {
 
     @Autowired
-    private GenericEntityRepository genericEntityRepository;
+    private GenericEntityRepository<GenericEntity> genericEntityRepository;
 
     @Test
     public void givenGenericEntityRepository_whenSaveAndRetreiveEntity_thenOK() {
