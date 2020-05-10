@@ -25,10 +25,9 @@ public class Product extends GenericEntity {
     @Column(name = "PRICE")
     private double productPrice;
 
-    // relacja z encją group
-//    @ManyToOne
-//    @JoinColumn(name = "GROUP_ID")
-//    private Group groupList;
+    @ManyToOne
+    @JoinColumn(name = "GROUP_ID")
+    private Group groupList;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(

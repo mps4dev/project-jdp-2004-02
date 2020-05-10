@@ -10,6 +10,6 @@ import javax.persistence.Entity;
 @Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+// @AllArgsConstructor
 public class Order extends GenericEntity {
 }
