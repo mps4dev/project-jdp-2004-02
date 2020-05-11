@@ -17,11 +17,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Group extends GenericEntity {
-    private long groupId;
     private String type;
     @OneToMany(
             targetEntity = Product.class,
-            mappedBy = "groupList",
+            mappedBy = "group",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
