@@ -14,10 +14,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 public class Product extends GenericEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PRODUCT_ID")
-    private long productId;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "PRODUCT_ID")
+//    private long productId;
     @NotBlank
     @Column(name = "PRODUCT_NAME")
     private String productName;
@@ -27,7 +27,7 @@ public class Product extends GenericEntity {
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    private Group groupList;
+    private Group group;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
