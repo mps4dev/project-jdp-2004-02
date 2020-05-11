@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/v1/group")
 public class GroupController {
 
     @GetMapping
