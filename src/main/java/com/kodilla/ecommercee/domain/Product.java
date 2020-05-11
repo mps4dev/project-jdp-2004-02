@@ -14,10 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 public class Product extends GenericEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "PRODUCT_ID")
-//    private long productId;
     @NotBlank
     @Column(name = "PRODUCT_NAME")
     private String productName;
