@@ -1,13 +1,13 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.OrderDto;
+import com.kodilla.ecommercee.dto.OrderDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/v1/order")
 public class OrderController {
 
     @GetMapping
