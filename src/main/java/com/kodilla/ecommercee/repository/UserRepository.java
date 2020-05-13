@@ -1,4 +1,5 @@
 package com.kodilla.ecommercee.repository;
 
-public interface UserRepository {
+public interface UserRepository extends GenericEntityRepository {
+
 }
