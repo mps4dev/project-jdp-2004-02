@@ -1,4 +1,7 @@
 package com.kodilla.ecommercee.repository;
 
-public interface GroupRepository {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface GroupRepository extends GenericEntityRepository {
 }
