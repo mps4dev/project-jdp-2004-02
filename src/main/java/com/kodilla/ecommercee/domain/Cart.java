@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Cart extends GenericEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User userId;
+    private User user;
 
     @OneToMany(
             targetEntity = Product.class,
