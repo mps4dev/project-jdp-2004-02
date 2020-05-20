@@ -21,4 +21,5 @@ public class Cart extends GenericEntity {
             fetch = FetchType.LAZY
     )
     private List<Product> products;
+
 }
