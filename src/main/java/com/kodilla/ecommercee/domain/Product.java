@@ -34,4 +34,3 @@ public class Product extends GenericEntity {
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 }
-
