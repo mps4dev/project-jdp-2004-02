@@ -1,5 +1,7 @@
 package com.kodilla.ecommercee.repository;
 
-public interface UserRepository extends GenericEntityRepository {
+import com.kodilla.ecommercee.domain.User;
+
+public interface UserRepository extends GenericEntityRepository<User> {
 
 }

@@ -1,4 +1,6 @@
 package com.kodilla.ecommercee.repository;
 
-public interface ProductRepository extends GenericEntityRepository {
+import com.kodilla.ecommercee.domain.Product;
+
+public interface ProductRepository extends GenericEntityRepository<Product> {
 }

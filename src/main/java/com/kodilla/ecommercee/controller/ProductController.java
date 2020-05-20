@@ -20,12 +20,12 @@ public class ProductController {
         return new ProductDto ();
     }
 
-    @PutMapping
+    @PostMapping
     public void create(@RequestBody ProductDto productDto) {
 
     }
 
-    @PostMapping
+    @PutMapping
     public ProductDto update(@RequestBody ProductDto product) {
         return new ProductDto();
     }
