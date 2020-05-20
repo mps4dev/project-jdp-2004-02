@@ -21,13 +21,13 @@ public class GroupController {
     }
 
     @PostMapping
-    public void create(GroupDto groupDto) {
+    public GroupDto create(@RequestBody GroupDto groupDto) {
+        return new GroupDto();
     }
 
     @PutMapping
     public GroupDto update(GroupDto groupDto) {
         return new GroupDto();
     }
-
 
 }

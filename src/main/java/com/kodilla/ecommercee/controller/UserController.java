@@ -13,11 +13,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public void delete(@PathVariable long userId){
+    public boolean delete(@PathVariable long userId) {
+        return true;
     }
 
     @PostMapping
-    public void create(@RequestBody UserDto userDto){ ;
+    public UserDto create(@RequestBody UserDto userDto) {
+        return new UserDto();
     }
 
     @PutMapping("/{userId}")

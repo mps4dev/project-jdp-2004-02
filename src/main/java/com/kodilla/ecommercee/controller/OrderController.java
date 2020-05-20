@@ -21,8 +21,8 @@ public class OrderController {
     }
 
     @DeleteMapping("/{orderId}")
-    public void delete(@PathVariable Long orderId) {
-
+    public boolean delete(@PathVariable Long orderId) {
+        return true;
     }
 
     @PutMapping
@@ -31,7 +31,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public void create(@RequestBody OrderDto orderDto) {
-
+    public OrderDto create(@RequestBody OrderDto orderDto) {
+        return new OrderDto();
     }
 }

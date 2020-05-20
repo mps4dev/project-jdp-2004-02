@@ -13,8 +13,8 @@ import java.util.List;
 public class CartController {
 
     @PostMapping
-    public void create(@RequestBody CartDto cartDto) {
-
+    public CartDto create(@RequestBody CartDto cartDto) {
+        return new CartDto();
     }
 
     @GetMapping("/{cartId}")
@@ -28,13 +28,13 @@ public class CartController {
     }
 
     @PostMapping("/{cartId}")
-    public void addProduct(@RequestParam long productId, @PathVariable long cartId) {
-
+    public boolean addProduct(@RequestParam long productId, @PathVariable long cartId) {
+        return true;
     }
 
     @DeleteMapping("/{cartId}")
-    public void deleteProduct(@RequestParam long productId, @PathVariable long cartId) {
-
+    public boolean deleteProduct(@RequestParam long productId, @PathVariable long cartId) {
+        return true;
     }
 
     @PutMapping("/makeOrder")

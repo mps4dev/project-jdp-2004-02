@@ -21,8 +21,8 @@ public class ProductController {
     }
 
     @PostMapping
-    public void create(@RequestBody ProductDto productDto) {
-
+    public ProductDto create(@RequestBody ProductDto productDto) {
+        return new ProductDto();
     }
 
     @PutMapping
@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public void delete(@PathVariable long productId) {
-
+    public boolean delete(@PathVariable long productId) {
+        return true;
     }
 }
