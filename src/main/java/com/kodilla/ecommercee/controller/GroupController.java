@@ -30,7 +30,7 @@ public class GroupController {
     }
 
     @PutMapping
-    public GroupDto update(GroupDto groupDto) {
+    public GroupDto update(@RequestBody GroupDto groupDto) {
         return groupService.update(groupDto);
     }
 
