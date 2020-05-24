@@ -4,9 +4,6 @@ import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.dto.UserDto;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
 public class UserMapper {
 
@@ -26,9 +23,4 @@ public class UserMapper {
         return user;
     }
 
-    public List<UserDto> mapToDtos(final List<User> users){
-        return users.stream()
-                .map(user -> mapToDto(user))
-                .collect(Collectors.toList());
-    }
 }
