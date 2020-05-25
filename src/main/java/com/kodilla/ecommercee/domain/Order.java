@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order extends GenericEntity {
-
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
