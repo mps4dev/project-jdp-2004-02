@@ -1,15 +1,17 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.dto.ProductDto;
-import com.kodilla.ecommercee.service.ProductService;
+import com.kodilla.ecommercee.repository.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/product")
 public class ProductController {
+
 
     @Autowired
     ProductService productService;

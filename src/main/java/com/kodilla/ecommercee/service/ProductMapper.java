@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class ProductMapper {
-
     public ProductDto mapToDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
@@ -31,4 +30,5 @@ public class ProductMapper {
         product.setProductPrice(productDto.getProductPrice());
         return product;
     }
+
 }
