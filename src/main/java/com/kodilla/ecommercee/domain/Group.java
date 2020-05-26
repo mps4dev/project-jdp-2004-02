@@ -23,7 +23,7 @@ public class Group extends GenericEntity {
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
-            cascade = CascadeType.PERSIST,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
     private List<Product> products = new ArrayList<>();
