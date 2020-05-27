@@ -23,16 +23,11 @@ public class ProductTest {
     private Order order = new Order();
     private Cart cart = new Cart();
     private Group group = new Group();
-    private User user = new User();
-
 
     @Before
     public void beforeTest() {
-        group.setName("group");
-        user.setName("user");
-        cart.setUser(user);
-        order.setUser(user);
-
+        product.setProductName("product");
+        product.setProductPrice(100.0);
         product.setOrder(order);
         product.setCart(cart);
         product.setGroup(group);
@@ -55,9 +50,11 @@ public class ProductTest {
         Cart savedCart = savedProduct.getCart();
         Order savedOrder = savedProduct.getOrder();
 
-        assertEquals("user", savedCart.getUser().getName());
-        assertEquals("user", savedOrder.getUser().getName());
-        assertEquals("group", savedGroup.getName());
+        assertNotNull(savedGroup);
+        assertNotNull(savedCart);
+        assertNotNull(savedOrder);
+        assertEquals("product", savedProduct.getProductName());
+        assertEquals(100.0, savedProduct.getProductPrice(), 0);
     }
 
     @Test
@@ -65,11 +62,8 @@ public class ProductTest {
         //When
         Product savedProduct = productRepository.findById(product.getId()).get();
 
-        group.setName("update");
-        user.setName("update");
-        cart.setUser(user);
-        order.setUser(user);
-
+        product.setProductName("update");
+        product.setProductPrice(200.0);
         savedProduct.setGroup(group);
         savedProduct.setCart(cart);
         savedProduct.setOrder(order);
@@ -81,9 +75,11 @@ public class ProductTest {
         Group updatedGroup = updatedProduct.getGroup();
         Order updatedOrder = updatedProduct.getOrder();
 
-        assertEquals("update", updatedCart.getUser().getName());
-        assertEquals("update", updatedGroup.getName());
-        assertEquals("update", updatedOrder.getUser().getName());
+        assertNotNull(updatedCart);
+        assertNotNull(updatedGroup);
+        assertNotNull(updatedOrder);
+        assertEquals("update", updatedProduct.getProductName());
+        assertEquals(200.0, updatedProduct.getProductPrice(), 0);
     }
 
     @Test
