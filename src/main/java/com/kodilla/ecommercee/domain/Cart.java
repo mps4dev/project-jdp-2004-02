@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,9 +19,10 @@ public class Cart extends GenericEntity {
 
     @OneToMany(
             targetEntity = Product.class,
-            cascade = CascadeType.ALL,
+            mappedBy = "cart",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
 }
