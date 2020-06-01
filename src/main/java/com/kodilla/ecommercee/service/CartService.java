@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,61 +25,55 @@ public class CartService {
     private final OrderRepository orderRepository;
 
     public CartDto create(final CartDto cartDto) {
-        Cart cart = cartMapper.mapToEntity(cartDto);    // mapuję cartDto na cart
-        Cart saveCart = cartRepository.save(cart);      // zapis cart do repo
+        Cart cart = cartMapper.mapToEntity(cartDto);
+        Cart saveCart = cartRepository.save(cart);
 
         return cartMapper.mapToDto(saveCart);
     }
 
     public List<ProductDto> getAllProducts(final long cartId) {
-        Cart cart = cartRepository.getOne(cartId);      // pobieram z repo koszyk o id
-        List<Product> products = cart.getProducts();    // pobieram listę produktów
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cannot find cart with id: " + cartId));
 
-        return productMapper.mapToDtos(products);
+        return cart.getProducts().stream()
+                .map(productMapper::mapToDto)
+                .collect(Collectors.toList());
     }
 
     public boolean addProduct(final long productId, final long cartId) {
-        Product product = productRepository.getOne(productId);  // tworzę produkt o id productId zgodnie z repo produkt
-        Cart cart = cartRepository.getOne(cartId);              // pobieram z repo koszyk o id
-        List<Product> products = cart.getProducts();            // pobieram wszystkie produkty z koszyka
-        products.add(product);                                  // dodaję produkt do listy produktów
-        cart.setProducts(products);                             // podmieniam listę produktów w koszyku na powiększoną o produkt
-        cartRepository.save(cart);                              // zapis koszyka do repo
+        Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Cannot find product with id: " + productId));
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cannot find cart with id: " + cartId));
+
+        List<Product> products = cart.getProducts();
+        products.add(product);
+        product.setCart(cart);
+        cart.setProducts(products);
+        cartRepository.save(cart);
 
         return true;
     }
 
     public ProductDto getProduct(final long productId, final long cartId) {
-        Cart cart = cartRepository.getOne(cartId);                  // pobieram koszyk z repo
-        List<Product> products = cart.getProducts();                // pobieram listę produktów
-        Product product = productRepository.getOne(productId);      // wybieram produkt z repo
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cannot find cart with id: " + cartId));
 
-        for (Product getProduct : products) {
-            if(getProduct.equals(product))
-                return productMapper.mapToDto(product);             // jeśli na liście istnieje produkt to zwróć -> przerobić na stream
-        }
-        return new ProductDto();                                    // niezbyt eleganckie, jeśli nie ma na liście
+        return cart.getProducts().stream()
+                .filter(p -> p.getId().equals(productId))
+                .findFirst()
+                .map(productMapper::mapToDto)
+                .orElseThrow(() -> new RuntimeException(""));
     }
 
     public boolean deleteProduct(final long productId, final long cartId) {
-        Cart cart = cartRepository.getOne(cartId);              // pobieram koszyk z repo
-        List<Product> products = cart.getProducts();            // pobieram produkty z koszyka
-        Product product = productRepository.getOne(productId);  // pobieram produkt z repo do porównania
-        if(products.contains(product)) {
-            products.remove(product);                           // usuwam produkt z listy
-            cart.setProducts(products);                         // podmieniam w koszyku listę produktów na zmniejszoną o produkt
-            cartRepository.save(cart);                          // zapisuję koszyk do repo
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cannot find cart with id: " + cartId));
 
-            return true;
-        }
-        else {
-            return false;
-        }
+        boolean productWasDeleted = cart.getProducts().removeIf(p -> p.getId().equals(productId));
+        cartRepository.save(cart);
+
+        return productWasDeleted;
     }
 
     public OrderDto makeOrder(final CartDto cartDto) {
         cartRepository.deleteById(cartDto.getId());
 
-        return new OrderDto();                          // tymczasowo zwracam pusty DTO, czekam na CartController
+        return new OrderDto();                          // tymczasowo zwracam pusty DTO, czekam na OrderController
     }
 }
