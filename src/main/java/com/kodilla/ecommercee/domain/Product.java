@@ -22,13 +22,13 @@ public class Product extends GenericEntity {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_ID")
-    private Group group = new Group();
+    private Group group;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "CART_ID")
-    private Cart cart = new Cart();
+    private Cart cart;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
-    private Order order = new Order();
+    private Order order;
 }
