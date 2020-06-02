@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Order extends GenericEntity {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     private User user;
 

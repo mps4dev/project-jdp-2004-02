@@ -14,23 +14,21 @@ import javax.validation.constraints.NotNull;
 @Data
 public class Product extends GenericEntity {
 
-    @NotBlank
     @Column(name = "PRODUCT_NAME")
     private String productName;
 
-    @NotNull
     @Column(name = "PRICE")
     private double productPrice;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_ID")
-    private Group group;
+    private Group group = new Group();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "CART_ID")
-    private Cart cart;
+    private Cart cart = new Cart();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
-    private Order order;
+    private Order order = new Order();
 }
