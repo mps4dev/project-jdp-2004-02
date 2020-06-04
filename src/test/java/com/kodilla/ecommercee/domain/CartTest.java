@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 public class CartTest {
 
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
 
     private Cart cart = new Cart();
     private List<Product> products = new LinkedList<>();
@@ -31,6 +31,22 @@ public class CartTest {
     @After
     public void after() {
         cartRepository.deleteAll();
+    }
+
+    @Test
+    public void userTest() {
+        //Given
+        List<Order> orders = new ArrayList<>();
+        User user = new User("UserName", false, orders, cart);
+        cart.setUser(user);
+        cartRepository.save(cart);
+
+        //When
+        Cart savedCart = cartRepository.findById(cart.getId())
+                .orElseThrow(() -> new RuntimeException());
+
+        //Then
+        assertEquals("UserName", savedCart.getUser().getName());
     }
 
     @Test
