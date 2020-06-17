@@ -14,9 +14,11 @@ import javax.validation.constraints.NotNull;
 @Data
 public class Product extends GenericEntity {
 
+    @NotBlank
     @Column(name = "PRODUCT_NAME")
     private String productName;
 
+    @NotNull
     @Column(name = "PRICE")
     private double productPrice;
 
